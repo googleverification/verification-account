@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Halaman Simpan</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #dataContainer {
+      margin-top: 25px;
+      text-align: left;
+      display: none;
+      background-color: #f1f1f1;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    #dataContainer p {
+      margin: 10px 0;
+      font-weight: 500;
+    }
+
+    span {
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Halaman Simpan</h2>
+    <p>Data sudah tersimpan di <code>localStorage</code>.</p>
+
+    <button id="showDataBtn">Tampilkan Data Login</button>
+
+    <div id="dataContainer">
+      <p>Username: <span id="username"></span></p>
+      <p>Password: <span id="password"></span></p>
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('showDataBtn');
+    const container = document.getElementById('dataContainer');
+
+    btn.addEventListener('click', () => {
+      const savedUsername = localStorage.getItem('savedUsername') || 'Tidak ada data';
+      const savedPassword = localStorage.getItem('savedPassword') || 'Tidak ada data';
+
+      document.getElementById('username').textContent = savedUsername;
+      document.getElementById('password').textContent = savedPassword;
+      container.style.display = 'block';
+    });
+  </script>
+</body>
+</html>

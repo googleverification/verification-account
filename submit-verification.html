@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Memverifikasi Akun Anda</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #202124;
+    }
+    .container {
+      width: 400px;
+      border: 1px solid #dadce0;
+      border-radius: 8px;
+      padding: 40px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      text-align: center;
+    }
+    .logo {
+      margin-bottom: 30px;
+    }
+    .logo img {
+      width: 75px;
+    }
+    .checkmark {
+      font-size: 48px;
+      color: #34a853;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 14px;
+      color: #5f6368;
+      margin-bottom: 20px;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 12px;
+      color: #80868b;
+    }
+    .footer a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+    .spinner {
+      margin: 30px auto 0;
+      border: 4px solid #e0e0e0;
+      border-top: 4px solid #1a73e8;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google" />
+    </div>
+    
+    <div class="checkmark">✔</div>
+    <h1>Verifikasi Berhasil</h1>
+    <p>Akun Anda sedang diproses. Anda akan segera dialihkan ke dasbor Google Anda.</p>
+
+    <div class="spinner" role="status" aria-label="Memuat..."></div>
+
+    <div class="footer">
+      <p>Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043</p>
+      <p><a href="https://support.google.com/accounts" target="_blank">Pusat Bantuan</a></p>
+    </div>
+  </div>
+
+  <script>
+    // Simulasi pengalihan otomatis setelah beberapa detik
+    setTimeout(function() {
+      window.location.href = "https://myaccount.google.com"; // atau tujuan lain
+    }, 4000);
+  </script>
+</body>
+</html>

